@@ -1,4 +1,4 @@
-# 💧 AquaWatch IoT — Water Quality Monitoring System
+# 💧 AquaWatch IoT — Water Quality Monitoring System 
 
 AquaWatch is a real-time IoT-based water quality monitoring system that collects, analyzes, and visualizes key environmental parameters such as Moisture, Turbidity, Temperature, and TDS using a modern web dashboard.
 
