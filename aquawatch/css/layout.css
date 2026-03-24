@@ -1,9 +1,4 @@
-/* ============================================================
-   layout.css — App shell, sidebar, topbar, page structure
-   AquaWatch IoT Dashboard
-   ============================================================ */
 
-/* ── Reset & Root Variables ─────────────────────────────── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,7 +33,6 @@ html, body {
   min-height: 100vh;
 }
 
-/* ── Sidebar ─────────────────────────────────────────────── */
 .sidebar {
   width: 220px;
   background: #0d1f18;
