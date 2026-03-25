@@ -4,7 +4,6 @@
 .teal  { color: var(--teal) !important; }
 .bold  { font-weight: 600 !important; }
 .mono  { font-family: 'DM Mono', monospace !important; }
-
 .two-col {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
