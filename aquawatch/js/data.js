@@ -73,7 +73,6 @@ const SENSOR_SIM = {
   }
 };
 
-// ── Screen Title Map ───────────────────────────────────────
 const PAGE_TITLES = {
   dashboard: 'Dashboard Overview',
   sensors:   'Sensor Details',
