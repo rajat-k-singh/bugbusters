@@ -152,7 +152,6 @@ html, body {
   min-width: 0;
 }
 
-/* ── Topbar ──────────────────────────────────────────────── */
 .topbar {
   background: var(--card);
   border-bottom: 1px solid var(--border);
@@ -232,7 +231,6 @@ html, body {
   display: block;
 }
 
-/* ── Pulse Animation ─────────────────────────────────────── */
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: .4; transform: scale(.75); }
