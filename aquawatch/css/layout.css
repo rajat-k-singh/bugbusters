@@ -1,4 +1,9 @@
+/* ============================================================
+   layout.css — App shell, sidebar, topbar, page structure
+   AquaWatch IoT Dashboard
+   ============================================================ */
 
+/* ── Reset & Root Variables ─────────────────────────────── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,6 +38,7 @@ html, body {
   min-height: 100vh;
 }
 
+/* ── Sidebar ─────────────────────────────────────────────── */
 .sidebar {
   width: 220px;
   background: #0d1f18;
@@ -152,6 +158,7 @@ html, body {
   min-width: 0;
 }
 
+/* ── Topbar ──────────────────────────────────────────────── */
 .topbar {
   background: var(--card);
   border-bottom: 1px solid var(--border);
@@ -231,6 +238,7 @@ html, body {
   display: block;
 }
 
+/* ── Pulse Animation ─────────────────────────────────────── */
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: .4; transform: scale(.75); }
