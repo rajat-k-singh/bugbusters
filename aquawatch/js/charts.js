@@ -49,7 +49,7 @@ function initMainChart() {
 /**
  * Called by tab buttons on the Dashboard screen.
  * Switches the main line chart to a different sensor parameter.
- * @param {string} key   - sensor key: 'ph' | 'turb' | 'temp' | 'do'
+ * @param {string} key   - sensor key: 'moisture' | 'turb' | 'temp' | 'tds'
  * @param {HTMLElement} btn - the clicked tab button element
  */
 function switchMain(key, btn) {
@@ -146,7 +146,7 @@ function setHistPeriod(period, btn) {
 
 /**
  * Called by parameter buttons on the History screen.
- * @param {string} key - 'ph' | 'turb' | 'temp' | 'do'
+ * @param {string} key - 'moisture' | 'turb' | 'temp' | 'tds'
  * @param {HTMLElement} btn
  */
 function setHistParam(key, btn) {
