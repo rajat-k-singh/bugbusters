@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Water Quality Dashboard</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f5f7fa;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* CARD DESIGN */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.value {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.label {
+    font-size: 18px;
+    color: #555;
+}
+
+/* COLORS */
+.tds { color: #007bff; }
+.temp { color: #ff5722; }
+.turbidity { color: #795548; }
+.soil { color: #4caf50; }
+
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2>🌊 Water Monitoring Dashboard</h2>
+
+<div class="dashboard">
+
+    <div class="card">
+        <div class="label">TDS</div>
+        <div id="tds" class="value tds">--</div>
+        <div id="tdsStatus" class="status"></div>
+    </div>
+
+    <div class="card">
+        <div class="label">Temperature</div>
+        <div id="temp" class="value temp">--</div>
+        <div id="tempStatus" class="status"></div>
+    </div>
+
+    <div class="card">
+        <div class="label">Turbidity</div>
+        <div id="turbidity" class="value turbidity">--</div>
+        <div id="turbidityStatus" class="status"></div>
+    </div>
+
+    <div class="card">
+        <div class="label">Soil Moisture</div>
+        <div id="soil" class="value soil">--</div>
+        <div id="soilStatus" class="status"></div>
+    </div>
+
+</div>
+
+<script>
+
+// ================= CONFIG =================
+const TOKEN = "PloBVZAJuXX3topbpdp0ccvqB6Zn8OWr";
+
+// 🔥 GET ALL SENSOR DATA
+const API_URL = `https://blynk.cloud/external/api/get?token=${TOKEN}&V0&V1&V2&V3`;
+
+
+// ================= LOAD DATA =================
+async function loadData() {
+    try {
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+        const data = await res.json();
+
+        console.log("Sensor Data:", data);
+
+        // ===== TDS =====
+        const tds = Number.parseFloat(data?.V0 ?? NaN);
+        document.getElementById("tds").innerText = Number.isFinite(tds) ? (tds + " ppm") : "--";
+
+        if (Number.isFinite(tds) && tds < 300) {
+            document.getElementById("tdsStatus").innerHTML = "✅ Good Water";
+        } else if (Number.isFinite(tds)) {
+            document.getElementById("tdsStatus").innerHTML = "⚠ High TDS";
+        } else {
+            document.getElementById("tdsStatus").innerHTML = "— No data";
+        }
+
+        // ===== TEMPERATURE =====
+        const temp = Number.parseFloat(data?.V1 ?? NaN);
+        document.getElementById("temp").innerText = Number.isFinite(temp) ? (temp + " °C") : "--";
+
+        if (Number.isFinite(temp) && temp < 30) {
+            document.getElementById("tempStatus").innerHTML = "✅ Normal";
+        } else if (Number.isFinite(temp)) {
+            document.getElementById("tempStatus").innerHTML = "🔥 High Temp";
+        } else {
+            document.getElementById("tempStatus").innerHTML = "— No data";
+        }
+
+        // ===== TURBIDITY =====
+        const turbidity = Number.parseFloat(data?.V2 ?? NaN);
+        document.getElementById("turbidity").innerText = Number.isFinite(turbidity) ? (turbidity + " NTU") : "--";
+
+        if (Number.isFinite(turbidity) && turbidity < 50) {
+            document.getElementById("turbidityStatus").innerHTML = "✅ Clear";
+        } else if (Number.isFinite(turbidity)) {
+            document.getElementById("turbidityStatus").innerHTML = "⚠ Dirty Water";
+        } else {
+            document.getElementById("turbidityStatus").innerHTML = "— No data";
+        }
+
+        // ===== SOIL =====
+        const soil = Number.parseFloat(data?.V3 ?? NaN);
+        document.getElementById("soil").innerText = Number.isFinite(soil) ? (soil + " %") : "--";
+
+        if (Number.isFinite(soil) && soil > 50) {
+            document.getElementById("soilStatus").innerHTML = "💧 Wet";
+        } else if (Number.isFinite(soil)) {
+            document.getElementById("soilStatus").innerHTML = "🌱 Dry";
+        } else {
+            document.getElementById("soilStatus").innerHTML = "— No data";
+        }
+
+    } catch (err) {
+        console.error("Error:", err);
+    }
+}
+
+
+// ================= AUTO REFRESH =================
+loadData();
+setInterval(loadData, 2000);
+
+</script>
+
+</body>
+</html>
+

@@ -51,6 +51,7 @@
   font-size: 12px;
 }
 
+/* ── Tab Set ─────────────────────────────────────────────── */
 .tab-set {
   display: flex;
   gap: 4px;
@@ -74,6 +75,7 @@
   border-color: var(--teal);
 }
 
+/* ── Alert Row ───────────────────────────────────────────── */
 .alerts-list {
   display: flex;
   flex-direction: column;
@@ -286,6 +288,8 @@
   color: var(--muted);
   font-weight: 400;
 }
+
+/* ── Storage Info Block ──────────────────────────────────── */
 .storage-info {
   margin-top: 16px;
   padding: 14px;
