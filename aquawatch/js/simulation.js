@@ -58,6 +58,8 @@ function setElWidth(id, width) {
 }
 
 function simulationTick() {
+  if (window.__AQUAWATCH_LIVE_MODE__) return;
+
   Object.keys(SENSOR_SIM).forEach(key => {
     const s   = SENSOR_SIM[key];
     const val = simulateValue(s.base, s.r);
